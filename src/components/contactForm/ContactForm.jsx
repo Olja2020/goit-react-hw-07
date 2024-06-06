@@ -20,8 +20,8 @@ export default function ContactForm() {
   const fieldId = useId();
   const handleSubmit = (values, actions) => {
     values.id = nanoid();
-    const { name, number } = values;
-    dispatch(addTask(name, number));
+    //const { name, number } = values;
+    dispatch(addTask(values));
 
     actions.resetForm();
   };
