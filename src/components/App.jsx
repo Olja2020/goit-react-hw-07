@@ -3,15 +3,17 @@ import ContactForm from "./contactForm/ContactForm";
 import ContactList from "./contactList/ContactList";
 import SearchBox from "./searchBox/SearchBox";
 import { selectError, selectLoading } from "../redux/contactsSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "../redux/contactsOps";
 import Loader from "../components/loader/Loader";
 import Error from "../components/error/Error";
 export default function App() {
   const dispatch = useDispatch();
 
-  const isLoading = selectLoading;
-  const isError = selectError;
+  // const isLoading = selectLoading;
+  // const isError = selectError;
+  const isLoading = useSelector(selectLoading);
+  const isError = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -21,11 +23,12 @@ export default function App() {
       <h1>Phonebook</h1>
       <ContactForm />
       <SearchBox />
-      {isError && <Error />}
-      {isLoading && <Loader />}
-
-      {/* {isLoading && <Loader>Loading message</Loader>}
-      {isError && <Error>Error message</Error>} */}
+      {/* { {isError && <Error />} }
+      {isLoading && <Loader />} */}
+      {/* {isLoading && <p>Loading</p>}
+      {isError && <p>Error</p>} */}
+      {isError && <Error message={"oops"} />}
+      {isLoading && <Loader message={"loader"} />}
       <ContactList />
     </div>
   );
