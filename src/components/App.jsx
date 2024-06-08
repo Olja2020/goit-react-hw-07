@@ -4,7 +4,7 @@ import ContactList from "./contactList/ContactList";
 import SearchBox from "./searchBox/SearchBox";
 //import { selectError, selectLoading } from "../redux/contactsSlice";
 import { useDispatch } from "react-redux";
-import { fetchTasks } from "../redux/contactsOps";
+import { fetchContacts } from "../redux/contactsOps";
 export default function App() {
   const dispatch = useDispatch();
 
@@ -12,7 +12,7 @@ export default function App() {
   // const isError = selectError;
 
   useEffect(() => {
-    dispatch(fetchTasks());
+    dispatch(fetchContacts());
   }, [dispatch]);
   return (
     <div>

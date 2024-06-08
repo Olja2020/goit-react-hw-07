@@ -1,13 +1,13 @@
 import css from "./Contact.module.css";
 import { useDispatch } from "react-redux";
-import { deleteTask } from "../../redux/contactsOps";
+import { deleteContact } from "../../redux/contactsOps";
 import { RiPhoneFill } from "react-icons/ri";
 import { RiUserFill } from "react-icons/ri";
 
 const Contact = ({ data: { name, number, id } }) => {
   const dispatch = useDispatch();
   const handleDelete = () => {
-    dispatch(deleteTask(id));
+    dispatch(deleteContact(id));
   };
   return (
     <div className={css.container}>

@@ -1,7 +1,6 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { fetchTasks, addTask, deleteTask } from "./contactsOps";
+import { fetchContacts, addContact, deleteContact } from "./contactsOps";
 import { selectNameFilter } from "./filtersSlice";
-//import { nameFilters } from "../components/contactList";
 const initialState = {
   items: [
     { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
@@ -19,41 +18,41 @@ export const contactsSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(fetchTasks.pending, (state) => {
+      .addCase(fetchContacts.pending, (state) => {
         state.error = false;
         state.loading = true;
       })
-      .addCase(fetchTasks.fulfilled, (state, action) => {
+      .addCase(fetchContacts.fulfilled, (state, action) => {
         state.items = action.payload;
         state.loading = false;
       })
-      .addCase(fetchTasks.rejected, (state) => {
+      .addCase(fetchContacts.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(addTask.pending, (state) => {
+      .addCase(addContact.pending, (state) => {
         state.error = false;
         state.loading = true;
       })
-      .addCase(addTask.fulfilled, (state, action) => {
+      .addCase(addContact.fulfilled, (state, action) => {
         state.items.push(action.payload);
         state.loading = false;
       })
-      .addCase(addTask.rejected, (state) => {
+      .addCase(addContact.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(deleteTask.pending, (state) => {
+      .addCase(deleteContact.pending, (state) => {
         state.error = false;
         state.loading = true;
       })
-      .addCase(deleteTask.fulfilled, (state, action) => {
+      .addCase(deleteContact.fulfilled, (state, action) => {
         state.items = state.items.filter(
           (item) => item.id !== action.payload.id
         );
         state.loading = false;
       })
-      .addCase(deleteTask.rejected, (state) => {
+      .addCase(deleteContact.rejected, (state) => {
         state.loading = false;
         state.error = true;
       });
