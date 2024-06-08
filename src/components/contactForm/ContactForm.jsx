@@ -18,7 +18,6 @@ const UserSchema = Yup.object().shape({
 export default function ContactForm() {
   const dispatch = useDispatch();
   const fieldId = useId();
-
   const handleSubmit = (values, actions) => {
     //values.id = nanoid();
     dispatch(addTask(values));
