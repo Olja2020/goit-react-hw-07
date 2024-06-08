@@ -10,8 +10,6 @@ import Error from "../components/error/Error";
 export default function App() {
   const dispatch = useDispatch();
 
-  // const isLoading = selectLoading;
-  // const isError = selectError;
   const isLoading = useSelector(selectLoading);
   const isError = useSelector(selectError);
 
@@ -23,10 +21,7 @@ export default function App() {
       <h1>Phonebook</h1>
       <ContactForm />
       <SearchBox />
-      {/* { {isError && <Error />} }
-      {isLoading && <Loader />} */}
-      {/* {isLoading && <p>Loading</p>}
-      {isError && <p>Error</p>} */}
+
       {isError && <Error message={"oops"} />}
       {isLoading && <Loader message={"loader"} />}
       <ContactList />
