@@ -2,9 +2,11 @@ import css from "./ContactForm.module.css";
 import { useId } from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-//import { nanoid } from "nanoid";
 import { addContact } from "../../redux/contactsOps";
 import { useDispatch } from "react-redux";
+//import { isLoading } from "../App";
+import { selectLoading } from "../../redux/contactsSlice";
+const isLoading = selectLoading;
 const UserSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "min 3 letter")
@@ -19,7 +21,6 @@ export default function ContactForm() {
   const dispatch = useDispatch();
   const fieldId = useId();
   const handleSubmit = (values, actions) => {
-    //values.id = nanoid();
     dispatch(addContact(values));
     actions.resetForm();
   };
@@ -54,7 +55,7 @@ export default function ContactForm() {
           />
           <ErrorMessage name="number" component="span" className={css.error} />
         </div>
-        <button className={css.btnForm} type="submit">
+        <button className={css.btnForm} type="submit" disabled={isLoading}>
           Add contact
         </button>
       </Form>
